@@ -1,5 +1,5 @@
 // ── Supabase connection ──────────────────────────────────────
-const SUPABASE_URL = 'https://vhmjcnmdhfsjhutrrg xq.supabase.co';
+const SUPABASE_URL = 'https://vhmjcnmdhfsjhutrrgxq.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZobWpjbm1kaGZzamh1dHJyZ3hxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk3NzUzMjUsImV4cCI6MjA5NTM1MTMyNX0.Isb4R-uoWLMh79gqJT-5MKyvv1ToBPQfm4_o-PGWZ2w';
 
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
