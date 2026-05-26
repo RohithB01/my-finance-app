@@ -1,0 +1,284 @@
+/* ── Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #0e0e11;
+  --bg2:      #16161c;
+  --bg3:      #1e1e26;
+  --border:   #2a2a35;
+  --text:     #f0f0f4;
+  --muted:    #8888a0;
+  --green:    #1D9E75;
+  --green2:   #5DCAA5;
+  --red:      #D85A30;
+  --blue:     #378ADD;
+  --blue2:    #5FA8F5;
+  --purple:   #7F77DD;
+  --orange:   #BA7517;
+  --radius:   10px;
+  --radius-lg:14px;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ── Shell ── */
+.app-shell {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+}
+
+/* ── Header ── */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.app-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -.3px;
+}
+.app-sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+/* ── Tabs ── */
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.tab {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--bg2);
+  color: var(--muted);
+  transition: all .15s;
+}
+.tab:hover { background: var(--bg3); color: var(--text); }
+.tab.active {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ── Cards ── */
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+.card-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+/* ── Metrics grid ── */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+.metric {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 12px;
+}
+.metric-label {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: 6px;
+}
+.metric-val {
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text);
+}
+.green  { color: var(--green2) !important; }
+.red    { color: var(--red)    !important; }
+.blue   { color: var(--blue2)  !important; }
+.purple { color: var(--purple) !important; }
+
+/* ── Row lines ── */
+.row-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+}
+.row-line:last-child { border: none; }
+.row-line span, .row-line label { font-size: 14px; color: var(--muted); }
+
+/* ── Inputs ── */
+input[type=number], input[type=text], select {
+  padding: 6px 10px;
+  font-size: 13px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg3);
+  color: var(--text);
+  outline: none;
+  transition: border .15s;
+}
+input[type=number]:focus,
+input[type=text]:focus,
+select:focus { border-color: var(--green); }
+input[type=number] { text-align: right; }
+
+/* ── Category rows ── */
+.cat-row {
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+}
+.cat-row:last-child { border: none; }
+.cat-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.cat-name { font-size: 14px; color: var(--text); }
+.cat-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.pct-input { width: 52px !important; text-align: center !important; }
+.budget-amt { font-size: 13px; color: var(--muted); min-width: 76px; text-align: right; }
+.cat-bottom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.spent-label { font-size: 12px; color: var(--muted); min-width: 36px; }
+.spent-input { width: 90px !important; }
+.bar-wrap {
+  flex: 1;
+  height: 5px;
+  background: var(--bg3);
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.bar-fill { height: 100%; border-radius: 3px; transition: width .3s; }
+
+/* ── Badges ── */
+.badge {
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 6px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.badge-green  { background: rgba(29,158,117,.18); color: var(--green2); }
+.badge-red    { background: rgba(216,90,48,.18);  color: var(--red); }
+.badge-blue   { background: rgba(55,138,221,.18); color: var(--blue2); }
+.badge-orange { background: rgba(186,117,23,.18); color: #f0a94a; }
+
+/* ── Buttons ── */
+.btn-green {
+  padding: 9px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .15s;
+}
+.btn-green:hover { background: #178a64; }
+.btn-red {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  background: rgba(216,90,48,.12);
+  color: var(--red);
+  border: 1px solid rgba(216,90,48,.3);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn-red:hover { background: rgba(216,90,48,.22); }
+.btn-small {
+  padding: 5px 12px;
+  font-size: 11px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  background: var(--bg3);
+  color: var(--muted);
+}
+.btn-small:hover { color: var(--text); border-color: var(--muted); }
+
+/* ── Chart containers ── */
+.chart-wrap {
+  position: relative;
+  width: 100%;
+  margin-top: 1rem;
+}
+.chart-wrap canvas { width: 100% !important; }
+.chart-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+@media(max-width:540px){ .chart-row { grid-template-columns: 1fr; } }
+
+/* ── Section divider ── */
+.section-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 1rem 0;
+}
+
+/* ── Log month card ── */
+.log-month-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+.log-month-header:hover .log-month-title { color: var(--green2); }
+.log-month-title { font-size: 15px; font-weight: 600; transition: color .15s; }
+.log-cat-detail { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+.log-cat-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--border);
+}
+.log-cat-row:last-child { border: none; }

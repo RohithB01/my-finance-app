@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💰 My Finance Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div>
+        <div class="app-title">💰 My Finance Dashboard</div>
+        <div class="app-sub">Personal money tracker</div>
+      </div>
+    </header>
+
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('budget')">📊 Budget</button>
+      <button class="tab" onclick="showTab('log')">📅 Monthly log</button>
+      <button class="tab" onclick="showTab('emi')">🏦 EMI tracker</button>
+      <button class="tab" onclick="showTab('sip')">📈 SIP portfolio</button>
+    </div>
+
+    <div id="tab-budget" class="tab-panel active"></div>
+    <div id="tab-log"    class="tab-panel"></div>
+    <div id="tab-emi"    class="tab-panel"></div>
+    <div id="tab-sip"    class="tab-panel"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+  <script src="log.js"></script>
+  <script src="emi.js"></script>
+  <script src="sip.js"></script>
+</body>
+</html>
