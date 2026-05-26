@@ -1,3 +1,39 @@
+// Load all data from Supabase on login
+window.loadAllData = async function() {
+  if (!window.currentUser) return;
+  const uid = window.currentUser.id;
+  const { db } = await import('./supabase.js');
+
+  // Load categories
+  const { data: catData } = await db.from('categories')
+    .select('*').eq('user_id', uid).order('sort_order');
+  if (catData && catData.length) {
+    cats = catData.map(c => ({ id: c.id, name: c.name, pct: c.pct }));
+    spent = new Array(cats.length).fill(0);
+  }
+
+  // Load incomes from localStorage still (small values)
+  incomeH = parseFloat(localStorage.getItem('incH')) || 60000;
+  incomeW = parseFloat(localStorage.getItem('incW')) || 40000;
+
+  // Load EMIs
+  const { data: emiData } = await db.from('emis').select('*').eq('user_id', uid);
+  if (emiData) emis = emiData.map(e => ({
+    id: e.id, name: e.name, principal: e.principal,
+    rate: e.rate, tenure: e.tenure, paid: e.paid, emi: e.emi
+  }));
+
+  // Load SIPs
+  const { data: sipData } = await db.from('sips').select('*').eq('user_id', uid);
+  if (sipData) sips = sipData.map(s => ({
+    id: s.id, name: s.name, monthly: s.monthly,
+    invested: s.invested, value: s.current_value,
+    cagr: s.cagr, stepup: s.stepup
+  }));
+
+  render();
+};
+
 // ── Shared data ──────────────────────────────────────────────
 const DEFAULT_CATS = [
   { name: 'SIP / investments',  pct: 30 },
