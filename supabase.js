@@ -6,10 +6,20 @@ const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFz
 export const db = createClient(SUPABASE_URL, SUPABASE_ANON);
 
 export async function signInWithGoogle() {
-  await db.auth.signInWithOAuth({
+  // Use full current URL so the redirect returns to the exact same page
+  const redirectTo = window.location.origin + window.location.pathname;
+
+  console.log('[Auth] Initiating Google sign-in, redirect to:', redirectTo);
+
+  const result = await db.auth.signInWithOAuth({
     provider: 'google',
-    options: { redirectTo: window.location.origin }
+    options: {
+      redirectTo: redirectTo,
+      scopes: 'openid email profile'
+    }
   });
+
+  return result;
 }
 
 export async function signOut() {
